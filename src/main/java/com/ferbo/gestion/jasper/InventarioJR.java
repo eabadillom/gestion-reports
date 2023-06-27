@@ -52,7 +52,7 @@ public class InventarioJR {
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
             jrParams.put("imagen", logoPath);
-            jrParams.put("idCliente", String.valueOf(idCliente));
+            jrParams.put("idCliente", idCliente);
             jrParams.put("fecha", fecha);
             jrParams.put("camara", null);
             jrParams.put("planta", idPlanta);
