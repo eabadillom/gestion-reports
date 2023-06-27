@@ -73,7 +73,8 @@ public class InventarioJR {
 		
 		Date                fecha = new Date();
         String              reportNameJASPER = null;
-        File                reportFile = null;
+        //File                reportFile = null;
+        InputStream         reportFile = null;
         Map<String, Object> jrParams = null;
         
         JasperBL jasperBO = new JasperBL();
@@ -86,8 +87,9 @@ public class InventarioJR {
             if(logoFile.exists() == false)
                 log.error("El archivo no existe: " + logoFile.getPath());
             
-            reportNameJASPER = "/com/hoth/jasper/inventario/inventario.jasper";
-            reportFile       = new File( getClass().getResource(reportNameJASPER).getFile() );
+            reportNameJASPER = "/jasper/almacen/InventarioAlmacen.jrxml";
+            //reportFile       = new File( getClass().getResource(reportNameJASPER).getFile() );
+            reportFile = getClass().getClassLoader().getResourceAsStream(reportNameJASPER);
             
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
@@ -98,7 +100,7 @@ public class InventarioJR {
             jrParams.put("planta", idPlanta);
             jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
             
-            bytes = jasperBO.createXLSX(jrParams, reportFile.getPath());
+            bytes = jasperBO.createXLSX(jrParams, reportFile);
             
         } catch(Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);

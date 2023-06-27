@@ -106,4 +106,44 @@ public class JasperBL {
 		
 		return bytes;
 	}
+	
+	public byte[] createXLSX(Map<String, Object> jrParams, InputStream jasperIS) throws IOException {
+		byte[] bytes = null;
+		ByteArrayOutputStream output = null;
+		JasperDesign design = null;
+		JasperReport report = null;
+		JasperPrint jasperPrint = null;
+		JRXlsxExporter exporter = null;
+		SimpleXlsxReportConfiguration configuration = null;
+		OutputStreamExporterOutput outputExporter = null;
+		
+		try {
+			output = new ByteArrayOutputStream();
+			design = JRXmlLoader.load(jasperIS);
+			report = JasperCompileManager.compileReport(design);
+			jasperPrint = JasperFillManager.fillReport(report, jrParams);
+			outputExporter = new SimpleOutputStreamExporterOutput(output);
+			exporter = new JRXlsxExporter();
+			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+			exporter.setExporterOutput(outputExporter);
+			configuration = new SimpleXlsxReportConfiguration();
+			configuration.setRemoveEmptySpaceBetweenColumns(true);
+			configuration.setRemoveEmptySpaceBetweenRows(true);
+			configuration.setDetectCellType(true);
+			configuration.setIgnoreGraphics(true);
+			configuration.setIgnorePageMargins(true);
+			configuration.setIgnoreCellBorder(true);
+			configuration.setWhitePageBackground(false);
+			exporter.setConfiguration(configuration);
+			exporter.exportReport();
+			
+			bytes = output.toByteArray();
+		} catch (JRException ex) {
+			ex.printStackTrace();
+		} finally {
+			IOTools.close(output);
+		}
+		
+		return bytes;
+	}
 }
