@@ -2,6 +2,7 @@ package com.ferbo.gestion.jasper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import com.ferbo.gestion.tools.IOTools;
@@ -31,6 +32,28 @@ public class JasperBL {
 		try {
 			output = new ByteArrayOutputStream();
 			design = JRXmlLoader.load(jrxmlPath);
+			report = JasperCompileManager.compileReport(design);
+			jasperPrint = JasperFillManager.fillReport(report, jrParams);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, output);
+			bytes = output.toByteArray();
+		} catch (JRException ex) {
+			ex.printStackTrace();
+		}finally {
+			IOTools.close(output);
+		}
+		
+		return bytes;
+	}
+	
+	public byte[] createPDF(Map<String, Object> jrParams, InputStream jasperIS) throws IOException {
+		byte[] bytes = null;
+		ByteArrayOutputStream output = null;
+		JasperDesign design = null;
+		JasperReport report = null;
+		JasperPrint jasperPrint = null;
+		try {
+			output = new ByteArrayOutputStream();
+			design = JRXmlLoader.load(jasperIS);
 			report = JasperCompileManager.compileReport(design);
 			jasperPrint = JasperFillManager.fillReport(report, jrParams);
 			JasperExportManager.exportReportToPdfStream(jasperPrint, output);

@@ -1,6 +1,7 @@
 package com.ferbo.gestion.jasper;
 
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,9 @@ public class InventarioJR {
 		
 		Date                fecha = new Date();
         String              reportNameJASPER = null;
-        File                reportFile = null;
+        //File                reportFile = null;
+        InputStream         reportFile = null;
+        
         Map<String, Object> jrParams = null;
         
         JasperBL jasperBO = new JasperBL();
@@ -41,7 +44,10 @@ public class InventarioJR {
                 log.error("El archivo no existe: " + logoFile.getPath());
             
             reportNameJASPER = "/jasper/almacen/InventarioAlmacen.jrxml";
-            reportFile       = new File( getClass().getResource(reportNameJASPER).getFile() );
+            
+            
+            //reportFile       = new File( getClass().getResource(reportNameJASPER).getFile() );
+            reportFile = getClass().getClassLoader().getResourceAsStream(reportNameJASPER);
             
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
@@ -52,7 +58,8 @@ public class InventarioJR {
             jrParams.put("planta", idPlanta);
             jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
             
-            bytes = jasperBO.createPDF(jrParams, reportFile.getPath());
+            //bytes = jasperBO.createPDF(jrParams, reportFile.getPath());
+            bytes = jasperBO.createPDF(jrParams, reportFile);
             
         } catch(Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
