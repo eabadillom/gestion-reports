@@ -81,7 +81,7 @@ public class InventarioJR {
         
         try {
             
-            String logoPath = "/jasper/logo.png";
+        	String logoPath = "/jasper/images/logo.png";
             File logoFile = new File(getClass().getResource(logoPath).getFile());
             log.info("Ruta logo: " + logoFile.getPath());
             if(logoFile.exists() == false)
