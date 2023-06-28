@@ -13,15 +13,19 @@ import org.apache.logging.log4j.Logger;
 
 import com.ferbo.gestion.tools.GestionException;
 
-public class InventarioJR {
+public class ReporteInventarioJR extends AbstractJR {
 	
-	private Connection conn = null;
 	
-	public InventarioJR(Connection conn) {
-		this.conn = conn;
+	
+	public ReporteInventarioJR(Connection conn) {
+		super(conn);
 	}
 	
-	private static Logger log = LogManager.getLogger(InventarioJR.class);
+	public ReporteInventarioJR(Connection conn, String logoPath) {
+		super(conn, logoPath);
+	}
+	
+	private static Logger log = LogManager.getLogger(ReporteInventarioJR.class);
 	
 	public byte[] getPDFReporteInventario(Integer idCliente, Integer idPlanta) throws GestionException {
 		byte[] bytes = null;
@@ -37,16 +41,12 @@ public class InventarioJR {
         
         try {
             
-            String logoPath = "/jasper/images/logo.png";
             File logoFile = new File(getClass().getResource(logoPath).getFile());
             log.info("Ruta logo: " + logoFile.getPath());
             if(logoFile.exists() == false)
-                log.error("El archivo no existe: " + logoFile.getPath());
+            	throw new GestionException("No se proporcionó el archivo de logotipo.");
             
             reportNameJASPER = "/jasper/almacen/InventarioAlmacen.jrxml";
-            
-            
-            //reportFile       = new File( getClass().getResource(reportNameJASPER).getFile() );
             reportFile = getClass().getClassLoader().getResourceAsStream(reportNameJASPER);
             
             jrParams = new HashMap<String, Object>();
