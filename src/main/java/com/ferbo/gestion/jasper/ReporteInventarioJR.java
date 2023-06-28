@@ -41,11 +41,7 @@ public class ReporteInventarioJR extends AbstractJR {
         
         try {
             
-            File logoFile = new File(getClass().getResource(logoPath).getFile());
-            log.info("Ruta logo: " + logoFile.getPath());
-            if(logoFile.exists() == false)
-            	throw new GestionException("No se proporcionó el archivo de logotipo.");
-            
+            log.info("Ruta logo: " + this.logoPath);
             reportNameJASPER = "/jasper/almacen/InventarioAlmacen.jrxml";
             reportFile = getClass().getClassLoader().getResourceAsStream(reportNameJASPER);
             
