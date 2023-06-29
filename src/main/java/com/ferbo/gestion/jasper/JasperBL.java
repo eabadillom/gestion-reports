@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.ferbo.gestion.tools.IOTools;
 
 import net.sf.jasperreports.engine.JRException;
@@ -23,6 +26,8 @@ import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 public class JasperBL {
 	
+	private static Logger log = LogManager.getLogger(JasperBL.class);
+	
 	public byte[] createPDF(Map<String, Object> jrParams, String jrxmlPath) throws IOException {
 		byte[] bytes = null;
 		ByteArrayOutputStream output = null;
@@ -37,7 +42,7 @@ public class JasperBL {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, output);
 			bytes = output.toByteArray();
 		} catch (JRException ex) {
-			ex.printStackTrace();
+			log.error("Problema con la exportación a PDF del reporte...",  ex);
 		}finally {
 			IOTools.close(output);
 		}
@@ -59,7 +64,7 @@ public class JasperBL {
 			JasperExportManager.exportReportToPdfStream(jasperPrint, output);
 			bytes = output.toByteArray();
 		} catch (JRException ex) {
-			ex.printStackTrace();
+			log.error("Problema con la exportación a PDF del reporte...",  ex);
 		}finally {
 			IOTools.close(output);
 		}

@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>com.ferbo</groupId>
 			<artifactId>gestion-tools</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.19.0</version>
+			<version>6.20.5</version>
 		</dependency>
 	</dependencies>
 	<build>
