@@ -35,7 +35,7 @@
 		<repository>
 			<id>gihub</id>
 			<name>gestion-tools</name>
-			<url>https://maven.pkg.github.com/eabadillom/gestion-tools</url>
+			<url>https://maven.pkg.github.com/eabadillom/*</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
