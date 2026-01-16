@@ -20,6 +20,12 @@ jobs:
           java-version: 8
           cache: maven
 
+      - name: maven-settings
+        uses: s4u/maven-settings-action@v2
+        with:
+          servers: '[{"id": "github", "username": "eabadillom", "password": "${GITHUB_TOKEN_REF}"}]'
+          githubServer: false
+
       - name: Validate SNAPSHOT version
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
@@ -28,11 +34,16 @@ jobs:
             echo "ERROR: develop debe usar versiones SNAPSHOT"
             exit 1
           fi
+        env:
+          GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
 
       - name: Build and test
         run: mvn clean verify
+        env:
+          GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
 
       - name: Deploy SNAPSHOT
         run: mvn deploy -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+          GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+
