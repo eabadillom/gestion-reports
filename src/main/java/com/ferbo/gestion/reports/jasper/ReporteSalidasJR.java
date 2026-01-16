@@ -1,4 +1,4 @@
-package com.ferbo.gestion.jasper;
+package com.ferbo.gestion.reports.jasper;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,53 +12,23 @@ import org.apache.logging.log4j.Logger;
 
 import com.ferbo.gestion.tools.GestionException;
 
-public class ReporteInventarioJR extends AbstractJR {
+public class ReporteSalidasJR extends AbstractJR {
 	
-	public static final String reportNameJASPER = "/jasper/almacen/InventarioAlmacen.jrxml";
+	private static Logger log = LogManager.getLogger(ReporteSalidasJR.class);
+	public static final String reportNameJASPER = "/jasper/almacen/Salidas.jrxml";
 	
-	public ReporteInventarioJR(Connection conn) {
+	public ReporteSalidasJR(Connection conn) {
 		super(conn);
 	}
 	
-	public ReporteInventarioJR(Connection conn, String logoAbsolutePath) {
+	public ReporteSalidasJR(Connection conn, String logoAbsolutePath) {
 		super(conn, logoAbsolutePath);
 	}
 	
-	private static Logger log = LogManager.getLogger(ReporteInventarioJR.class);
-	
-	public byte[] getPDFReporteInventario(Integer idCliente, Integer idPlanta) throws GestionException {
-		byte[]              bytes = null;
-		Date                fecha = new Date();
-        InputStream         jrxml = null;
-        Map<String, Object> jrParams = null;
-        JasperBL jasperBO = new JasperBL();
-        
-        try {
-            
-            log.info("Ruta logo: " + this.logoPath);
-            jrxml = fsTools.getResourceStream(reportNameJASPER);
-            
-            jrParams = new HashMap<String, Object>();
-            jrParams.put("REPORT_CONNECTION", conn);
-            jrParams.put("imagen", logoPath);
-            jrParams.put("idCliente", idCliente);
-            jrParams.put("Fecha", fecha);
-            jrParams.put("Camara", null);
-            jrParams.put("Planta", idPlanta);
-            jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
-            
-            bytes = jasperBO.createPDF(jrParams, jrxml);
-            
-        } catch(Exception ex) {
-            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
-        }
-        
-        return bytes;
-	}
-	
-	public byte[] getXLSReporteInventario(Integer idCliente, Integer idPlanta) throws GestionException {
-		byte[]              bytes = null;
-		Date                fecha = new Date();
+	public byte[] getPDF(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer Camara)
+	throws GestionException {
+		byte[] bytes = null;
+		
         InputStream         jrxml = null;
         Map<String, Object> jrParams = null;
         
@@ -67,14 +37,47 @@ public class ReporteInventarioJR extends AbstractJR {
         try {
         	log.info("Ruta logo: " + this.logoPath);
         	jrxml = fsTools.getResourceStream(reportNameJASPER);
-            
+        	
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
             jrParams.put("imagen", logoPath);
             jrParams.put("idCliente", idCliente);
-            jrParams.put("Fecha", fecha);
-            jrParams.put("Camara", null);
+            jrParams.put("fechaInicio",  fechaInicio);
+            jrParams.put("fechaFin", fechaFin);
             jrParams.put("Planta", idPlanta);
+            jrParams.put("Camara", null);
+            jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
+            
+            bytes = jasperBO.createPDF(jrParams, jrxml);
+            
+        } catch(Exception ex) {
+            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
+        }
+		
+		return bytes;
+	}
+	
+	public byte[] getXLSX(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer Camara)
+	throws GestionException {
+		byte[] bytes = null;
+		
+        InputStream         jrxml = null;
+        Map<String, Object> jrParams = null;
+        
+        JasperBL jasperBO = new JasperBL();
+        
+        try {
+        	log.info("Ruta logo: " + this.logoPath);
+        	jrxml = fsTools.getResourceStream(reportNameJASPER);
+        	
+            jrParams = new HashMap<String, Object>();
+            jrParams.put("REPORT_CONNECTION", conn);
+            jrParams.put("imagen", logoPath);
+            jrParams.put("idCliente", idCliente);
+            jrParams.put("fechaInicio",  fechaInicio);
+            jrParams.put("fechaFin", fechaFin);
+            jrParams.put("Planta", idPlanta);
+            jrParams.put("Camara", null);
             jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
             
             bytes = jasperBO.createXLSX(jrParams, jrxml);
@@ -82,8 +85,8 @@ public class ReporteInventarioJR extends AbstractJR {
         } catch(Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
         }
-        
-        return bytes;
+		
+		return bytes;
 	}
 
 }

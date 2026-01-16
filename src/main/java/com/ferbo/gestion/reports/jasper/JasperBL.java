@@ -1,4 +1,4 @@
-package com.ferbo.gestion.jasper;
+package com.ferbo.gestion.reports.jasper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class JasperBL {
 		return bytes;
 	}
 	
-	public byte[] createPDF(Map<String, Object> jrParams, InputStream jasperIS) throws IOException {
+	public byte[] createPDF(Map<String, Object> jrParams, InputStream jrxml) throws IOException {
 		byte[] bytes = null;
 		ByteArrayOutputStream output = null;
 		JasperDesign design = null;
@@ -58,7 +58,7 @@ public class JasperBL {
 		JasperPrint jasperPrint = null;
 		try {
 			output = new ByteArrayOutputStream();
-			design = JRXmlLoader.load(jasperIS);
+			design = JRXmlLoader.load(jrxml);
 			report = JasperCompileManager.compileReport(design);
 			jasperPrint = JasperFillManager.fillReport(report, jrParams);
 			JasperExportManager.exportReportToPdfStream(jasperPrint, output);
@@ -112,7 +112,7 @@ public class JasperBL {
 		return bytes;
 	}
 	
-	public byte[] createXLSX(Map<String, Object> jrParams, InputStream jasperIS) throws IOException {
+	public byte[] createXLSX(Map<String, Object> jrParams, InputStream jrxml) throws IOException {
 		byte[] bytes = null;
 		ByteArrayOutputStream output = null;
 		JasperDesign design = null;
@@ -124,7 +124,7 @@ public class JasperBL {
 		
 		try {
 			output = new ByteArrayOutputStream();
-			design = JRXmlLoader.load(jasperIS);
+			design = JRXmlLoader.load(jrxml);
 			report = JasperCompileManager.compileReport(design);
 			jasperPrint = JasperFillManager.fillReport(report, jrParams);
 			outputExporter = new SimpleOutputStreamExporterOutput(output);
