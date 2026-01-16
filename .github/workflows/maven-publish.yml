@@ -1,0 +1,131 @@
+name: Maven Publish (GitHub Packages)
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: "Java version"
+        required: false
+        default: "8"
+        type: string
+
+      publish-type:
+        description: "snapshot | release"
+        required: true
+        type: string
+
+      github-username:
+        description: "GitHub username (repo personal)"
+        required: true
+        type: string
+
+      create-tag:
+        description: "Create git tag on release"
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  echo-default_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Who is actor?
+        run: |
+          echo "GITHUB_ACTOR=${GITHUB_ACTOR}"
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.java-version }}
+          cache: maven
+
+      - name: Configure Maven settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat <<EOF > ~/.m2/settings.xml
+          <settings>
+            <servers>
+              <server>
+                <id>github</id>
+                <username>${GITHUB_ACTOR}</username>
+                <password>${GITHUB_TOKEN}</password>
+              </server>
+            </servers>
+
+            <profiles>
+              <profile>
+                <id>github</id>
+                <repositories>
+                  <repository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                  </repository>
+                  <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/${{ inputs.github-username }}/*</url>
+                  </repository>
+                </repositories>
+
+                <pluginRepositories>
+                  <pluginRepository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                  </pluginRepository>
+                  <pluginRepository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/${{ inputs.github-username }}/*</url>
+                  </pluginRepository>
+                </pluginRepositories>
+              </profile>
+            </profiles>
+
+            <activeProfiles>
+              <activeProfile>github</activeProfile>
+            </activeProfiles>
+          </settings>
+          EOF
+        env:
+          GITHUB_ACTOR: ${{ secrets.GH_PAT_FOR_ACTIONS_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+
+      - name: Validate project version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Project version: $VERSION"
+
+          if [[ "${{ inputs.publish-type }}" == "snapshot" && "$VERSION" != *"-SNAPSHOT" ]]; then
+            echo "ERROR: Se esperaba una versión SNAPSHOT"
+            exit 1
+          fi
+
+          if [[ "${{ inputs.publish-type }}" == "release" && "$VERSION" == *"-SNAPSHOT" ]]; then
+            echo "ERROR: No se permite SNAPSHOT en RELEASE"
+            exit 1
+          fi
+
+      - name: Build and test
+        run: mvn clean verify
+
+      - name: Deploy to GitHub Packages
+        run: mvn deploy -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
+
+      - name: Create Git tag
+        if: ${{ inputs.publish-type == 'release' && inputs.create-tag }}
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
+
+
