@@ -35,4 +35,4 @@ jobs:
       - name: Deploy SNAPSHOT
         run: mvn deploy -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN }}
