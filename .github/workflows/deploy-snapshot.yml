@@ -7,9 +7,9 @@ on:
 
 jobs:
   deploy:
-    uses: TU_USUARIO/github-actions/.github/workflows/maven-publish.yml@main
+    uses: eabadillom/github-actions/.github/workflows/maven-publish.yml@main
     with:
       publish-type: snapshot
-      github-username: eabadillom
+      github-username: ${{ github.repository_owner }}
       java-version: "8"
 
