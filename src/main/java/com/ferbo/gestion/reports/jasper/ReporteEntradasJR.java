@@ -25,7 +25,7 @@ public class ReporteEntradasJR extends AbstractJR {
 		super(conn, logoAbsolutePath);
 	}
 	
-	public byte[] getPDF(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer Camara)
+	public byte[] getPDF(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer idCamara)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -35,17 +35,17 @@ public class ReporteEntradasJR extends AbstractJR {
         JasperBL jasperBO = new JasperBL();
         
         try {
-        	log.info("Ruta logo: " + this.logoPath);
+        	log.debug("Ruta logo: " + this.logoPath);
         	jrxml = fsTools.getResourceStream(reportNameJASPER);
         	
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
-            jrParams.put("imagen", logoPath);
+            jrParams.put("FechaIni",  fechaInicio);
+            jrParams.put("FechaFin", fechaFin);
             jrParams.put("idCliente", idCliente);
-            jrParams.put("fechaInicio",  fechaInicio);
-            jrParams.put("fechaFin", fechaFin);
+            jrParams.put("Camara", idCamara);
             jrParams.put("Planta", idPlanta);
-            jrParams.put("Camara", null);
+            jrParams.put("imagen", logoPath);
             jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
             
             bytes = jasperBO.createPDF(jrParams, jrxml);
@@ -67,7 +67,7 @@ public class ReporteEntradasJR extends AbstractJR {
         JasperBL jasperBO = new JasperBL();
         
         try {
-        	log.info("Ruta logo: " + this.logoPath);
+        	log.debug("Ruta logo: " + this.logoPath);
         	jrxml = fsTools.getResourceStream(reportNameJASPER);
         	
             jrParams = new HashMap<String, Object>();
