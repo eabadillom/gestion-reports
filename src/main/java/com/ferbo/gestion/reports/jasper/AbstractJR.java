@@ -1,4 +1,4 @@
-package com.ferbo.gestion.jasper;
+package com.ferbo.gestion.reports.jasper;
 
 import java.sql.Connection;
 
