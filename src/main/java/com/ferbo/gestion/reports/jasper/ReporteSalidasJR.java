@@ -57,7 +57,7 @@ public class ReporteSalidasJR extends AbstractJR {
 		return bytes;
 	}
 	
-	public byte[] getXLSX(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer Camara)
+	public byte[] getXLSX(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer idCamara)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -76,8 +76,8 @@ public class ReporteSalidasJR extends AbstractJR {
             jrParams.put("idCliente", idCliente);
             jrParams.put("fechaInicio",  fechaInicio);
             jrParams.put("fechaFin", fechaFin);
-            jrParams.put("Planta", idPlanta);
-            jrParams.put("Camara", null);
+            jrParams.put("planta", idPlanta);
+            jrParams.put("camara", idCamara);
             jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
             
             bytes = jasperBO.createXLSX(jrParams, jrxml);
