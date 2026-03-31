@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ferbo</groupId>
 	<artifactId>gestion-reports</artifactId>
-	<version>1.0.1-RELEASE</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>Gestion Reports</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
-			<version>8.2.0</version>
+			<version>8.4.0</version>
 		</dependency>
 	</dependencies>
 	<repositories>
