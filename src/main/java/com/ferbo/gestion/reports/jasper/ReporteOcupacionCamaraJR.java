@@ -25,10 +25,9 @@ public class ReporteOcupacionCamaraJR extends AbstractJR
         super(conn, logoAbsolutePath);
     }
     
-    public byte[] getPDFReporteOcupacionCamara(List<Integer> listCliente, Integer idCliente, Integer idPlanta) throws GestionException 
+    public byte[] getPDFReporteOcupacionCamara(Date fecha, List<Integer> clientes, Integer idPlanta) throws GestionException 
     {
         byte[]              bytes = null;
-        Date                fecha = new Date();
         InputStream         jrxml = null;
         Map<String, Object> jrParams = null;
         JasperBL jasperBO = new JasperBL();
@@ -38,7 +37,7 @@ public class ReporteOcupacionCamaraJR extends AbstractJR
             
             jrParams = new HashMap<String, Object>();
             jrParams.put("REPORT_CONNECTION", conn);
-            jrParams.put("idCliente", listCliente);
+            jrParams.put("idCliente", clientes);
             jrParams.put("idPlanta", idPlanta);
             jrParams.put("fecha", fecha);
             jrParams.put("imagen", this.logoPath);
