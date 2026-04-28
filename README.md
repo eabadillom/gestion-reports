@@ -8,4 +8,6 @@ Este componente proporciona un lugar común para los reportes del sistema de inv
 - Reporte de salidas (retiro de almacén)
 - Reporte de ocupacion camara
 - Kardex
+- Orden retiro (salida)
+- Estado de cuenta (clientes)
 
