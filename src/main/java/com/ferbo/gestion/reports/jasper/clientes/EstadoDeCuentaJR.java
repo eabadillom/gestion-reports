@@ -1,27 +1,30 @@
-package com.ferbo.gestion.reports.jasper;
+package com.ferbo.gestion.reports.jasper.clientes;
 
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ferbo.gestion.reports.jasper.AbstractJR;
+import com.ferbo.gestion.reports.jasper.JasperBL;
 import com.ferbo.gestion.tools.GestionException;
 
-public class KardexJR extends AbstractJR {
+public class EstadoDeCuentaJR extends AbstractJR {
 	
-	private static final Logger log = LogManager.getLogger(KardexJR.class);
-	public static final String reportNameJASPER = "/jasper/almacen/Kardex.jrxml";
+	private static Logger log = LogManager.getLogger(EstadoDeCuentaJR.class);
+	public static final String reportNameJASPER = "/jasper/contabilidad/clientes/EstadoDeCuenta.jrxml";
 
-	public KardexJR(Connection conn) {
+	public EstadoDeCuentaJR(Connection conn) {
 		super(conn);
 	}
-	
-	public KardexJR(Connection conn, String logoAbsolutePath) {
-		super(conn, logoAbsolutePath);
+
+	public EstadoDeCuentaJR(Connection conn, String logoPath) {
+		super(conn, logoPath);
 	}
-	
-	public byte[] getPDF(String folioCliente)
+
+	public byte[] getPDF(Integer idCliente, Date fechaInicio, Date fechaFin)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -31,11 +34,12 @@ public class KardexJR extends AbstractJR {
         try {
         	log.debug("Ruta logo: " + this.logoPath);
         	jrxml = this.fsTools.getResourceStream(reportNameJASPER);
-        	
-            this.jrParams.put("folioCliente", folioCliente);
-            this.jrParams.put("imagen", logoPath);
+        	this.jrParams.put("idCliente", idCliente);
+        	this.jrParams.put("fechaInicio", fechaInicio);
+        	this.jrParams.put("fechaFin", fechaFin);
+            this.jrParams.put("imagen", this.logoPath);
             
-            bytes = jasperBO.createPDF(jrParams, jrxml);
+            bytes = jasperBO.createPDF(this.jrParams, jrxml);
             
         } catch(Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
@@ -44,7 +48,7 @@ public class KardexJR extends AbstractJR {
 		return bytes;
 	}
 	
-	public byte[] getXLSX(String folioCliente)
+	public byte[] getXLSX(Integer idCliente, Date fechaInicio, Date fechaFin)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -55,8 +59,10 @@ public class KardexJR extends AbstractJR {
         	log.debug("Ruta logo: " + this.logoPath);
         	jrxml = this.fsTools.getResourceStream(reportNameJASPER);
         	
-            this.jrParams.put("folioCliente", folioCliente);
-            this.jrParams.put("imagen", logoPath);
+        	this.jrParams.put("idCliente", idCliente);
+        	this.jrParams.put("fechaInicio", fechaInicio);
+        	this.jrParams.put("fechaFin", fechaFin);
+            this.jrParams.put("imagen", this.logoPath);
             
             bytes = jasperBO.createXLSX(this.jrParams, jrxml);
             
