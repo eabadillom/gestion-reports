@@ -13,19 +13,19 @@ Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Chang
 ### Changed
 - La creación de los parámetros para JasperRerpots se delega a la clase `AbstractJR`.
 - Las clases que heredan de `JasperBL` --> `AbstractJR` tienen acceso al objeto `jrParams`, el cual es configurado desde el constructor de `AbstractJR`.
-  * * `KardexJR`
-  * * `OrdenRetiroJR`
-  * * `ReporteEntradasJR`
-  * * `ReporteInventarioJR`
-  * * `ReporteOcupacionCamaraJR`
-  * * `ReporteSalidasJR`
+  * `KardexJR`
+  * `OrdenRetiroJR`
+  * `ReporteEntradasJR`
+  * `ReporteInventarioJR`
+  * `ReporteOcupacionCamaraJR`
+  * `ReporteSalidasJR`
 - La clase ReporteInventarioJR agrega un método para recibir la fecha de corte de inventario, además de los parámetros de id de cliente y de planta.
 - Los archivos JRXML que reciben como parámetro uno o más objetos `java.util.Date` para mostrar un periodo o fecha de corte ahora se muestran en un solo Text Field.
-  * * `almacen/Entradas.jrxml`
-  * * `almacen/InventarioAlmacen.jrxml`
-  * * `almacen/OcupacionCamara.jrxml`
-  * * `almacen/Salidas.jrxml`
-  * * `contabilidad/clientes/EstadoDeCuenta.jrxml`
+  * `almacen/Entradas.jrxml`
+  * `almacen/InventarioAlmacen.jrxml`
+  * `almacen/OcupacionCamara.jrxml`
+  * `almacen/Salidas.jrxml`
+  * `contabilidad/clientes/EstadoDeCuenta.jrxml`
 
 ## [1.2.0] - 2026-04-23
 ### Added
