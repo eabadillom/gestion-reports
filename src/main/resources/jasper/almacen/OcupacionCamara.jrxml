@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OcupacionCamara" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8a15733-41b2-4cd9-aa5b-23ad3c056967">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GestionLocal"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_local.jrdax"/>
 	<parameter name="imagen" class="java.lang.String">
 		<defaultValueExpression><![CDATA["/logo.jpeg"]]></defaultValueExpression>
 	</parameter>
@@ -189,35 +189,24 @@
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE OCUPACIÓN DE CÁMARAS ]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="209" height="49" uuid="9bb13c97-a93b-4d87-87c2-d43e36f3d989">
+				<reportElement x="0" y="0" width="150" height="49" uuid="9bb13c97-a93b-4d87-87c2-d43e36f3d989">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="0" y="35" width="280" height="14" uuid="1bc91916-8a0a-4bbc-9cea-4ff5a99fe5e4">
-					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<paragraph lineSpacingSize="1.0" rightIndent="10"/>
-				</textElement>
-				<text><![CDATA[al dia]]></text>
-			</staticText>
 			<textField pattern="dd &apos;de&apos; MMMM &apos;de&apos; yyyy">
-				<reportElement x="280" y="35" width="292" height="14" uuid="8ad489f1-c5db-433f-92d5-563aa9da38f5">
+				<reportElement x="0" y="35" width="572" height="14" uuid="8ad489f1-c5db-433f-92d5-563aa9da38f5">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fecha})]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -279,7 +268,7 @@
 		<band height="100">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<image>
-				<reportElement x="0" y="0" width="170" height="50" uuid="97c8ef44-3815-4f6b-9bbd-afd1ff92bbb9">
+				<reportElement x="0" y="0" width="150" height="49" uuid="97c8ef44-3815-4f6b-9bbd-afd1ff92bbb9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -292,7 +281,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
-					<font fontName="SansSerif" size="14" isBold="true"/>
+					<font fontName="SansSerif" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE OCUPACIÓN DE CÁMARAS]]></text>
 			</staticText>

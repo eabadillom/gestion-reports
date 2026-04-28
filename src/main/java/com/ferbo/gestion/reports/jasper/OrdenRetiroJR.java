@@ -8,20 +8,20 @@ import org.apache.logging.log4j.Logger;
 
 import com.ferbo.gestion.tools.GestionException;
 
-public class KardexJR extends AbstractJR {
+public class OrdenRetiroJR extends AbstractJR {
 	
 	private static final Logger log = LogManager.getLogger(KardexJR.class);
-	public static final String reportNameJASPER = "/jasper/almacen/Kardex.jrxml";
+	public static final String reportNameJASPER = "/jasper/almacen/OrdenRetiro.jrxml";
 
-	public KardexJR(Connection conn) {
+	public OrdenRetiroJR(Connection conn) {
 		super(conn);
 	}
 	
-	public KardexJR(Connection conn, String logoAbsolutePath) {
+	public OrdenRetiroJR(Connection conn, String logoAbsolutePath) {
 		super(conn, logoAbsolutePath);
 	}
 	
-	public byte[] getPDF(String folioCliente)
+	public byte[] getPDF(String folioSalida, Integer idPlanta, Boolean isHorarioEspecial)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -31,11 +31,12 @@ public class KardexJR extends AbstractJR {
         try {
         	log.debug("Ruta logo: " + this.logoPath);
         	jrxml = this.fsTools.getResourceStream(reportNameJASPER);
-        	
-            this.jrParams.put("folioCliente", folioCliente);
-            this.jrParams.put("imagen", logoPath);
+            this.jrParams.put("folioSalida", folioSalida);
+			this.jrParams.put("idPlanta", idPlanta);
+			this.jrParams.put("esHorarioEspecial", isHorarioEspecial);
+			this.jrParams.put("logoPath", logoPath);
             
-            bytes = jasperBO.createPDF(jrParams, jrxml);
+            bytes = jasperBO.createPDF(this.jrParams, jrxml);
             
         } catch(Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
@@ -44,7 +45,7 @@ public class KardexJR extends AbstractJR {
 		return bytes;
 	}
 	
-	public byte[] getXLSX(String folioCliente)
+	public byte[] getXLSX(String folioSalida, Integer idPlanta, Boolean isHorarioEspecial)
 	throws GestionException {
 		byte[] bytes = null;
 		
@@ -53,10 +54,13 @@ public class KardexJR extends AbstractJR {
         
         try {
         	log.debug("Ruta logo: " + this.logoPath);
-        	jrxml = this.fsTools.getResourceStream(reportNameJASPER);
         	
-            this.jrParams.put("folioCliente", folioCliente);
-            this.jrParams.put("imagen", logoPath);
+        	jrxml = fsTools.getResourceStream(reportNameJASPER);
+        	
+            this.jrParams.put("folioSalida", folioSalida);
+			this.jrParams.put("idPlanta", idPlanta);
+			this.jrParams.put("esHorarioEspecial", isHorarioEspecial);
+			this.jrParams.put("logoPath", this.logoPath);
             
             bytes = jasperBO.createXLSX(this.jrParams, jrxml);
             

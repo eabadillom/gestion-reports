@@ -409,10 +409,7 @@
 	
 ) I
 WHERE I.cantidad > 0
-ORDER BY cliente,numero_cte, nb_tarima, producto
-
-
-]]>
+ORDER BY cliente,numero_cte, nb_tarima, producto]]>
 	</queryString>
 	<field name="folio" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="folio"/>
@@ -786,23 +783,13 @@ ORDER BY cliente,numero_cte, nb_tarima, producto
 				<reportElement x="0" y="0" width="170" height="54" uuid="8e9e7c98-2238-4d80-8a3d-2c8302172ecb"/>
 				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="0" y="21" width="350" height="12" uuid="78eb317b-93ff-4fe2-ab33-46533534b497"/>
-				<textElement textAlignment="Right">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<text><![CDATA[al día  ]]></text>
-			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="358" y="21" width="403" height="12" uuid="94348fda-af14-4356-ac60-49af12db7961"/>
-				<textElement>
+				<reportElement x="0" y="21" width="761" height="12" uuid="94348fda-af14-4356-ac60-49af12db7961"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{Fecha})]]></textFieldExpression>
 			</textField>
-			<rectangle>
-				<reportElement x="350" y="21" width="8" height="12" forecolor="#F7F0F0" uuid="a36f4b9e-a678-419a-b31c-6b6c8d6c770d"/>
-			</rectangle>
 		</band>
 	</title>
 	<pageHeader>

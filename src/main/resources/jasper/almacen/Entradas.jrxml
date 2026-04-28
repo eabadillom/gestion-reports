@@ -372,7 +372,8 @@ ORDER BY
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="39">
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<staticText>
 					<reportElement x="652" y="0" width="50" height="11" uuid="c60b4992-f0f4-4a27-a275-5c0a55a4fc66"/>
 					<textElement textAlignment="Right" verticalAlignment="Bottom">
@@ -440,20 +441,6 @@ ORDER BY
 	<title>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="163" y="21" width="162" height="12" uuid="1ab9f0f8-9ac3-48bd-951e-d09e6af1cc28"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[del dia]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="422" y="21" width="380" height="12" uuid="05ec25e0-f7d2-4dbb-9353-7edc0b68f885"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{FechaFin}]]></textFieldExpression>
-			</textField>
-			<staticText>
 				<reportElement x="0" y="0" width="802" height="21" forecolor="#2196F3" uuid="cfab7771-7c4a-42ee-93b1-66db7f839aae">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -464,19 +451,12 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[REPORTE DE ENTRADAS]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="390" y="21" width="32" height="12" uuid="44edc836-bc87-49fb-8069-4fc33ba22c59"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[al dia]]></text>
-			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="325" y="21" width="65" height="12" uuid="ef664b44-5cb5-4e08-a0e8-a1f8f5c15f6c"/>
+				<reportElement x="0" y="21" width="802" height="12" uuid="ef664b44-5cb5-4e08-a0e8-a1f8f5c15f6c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{FechaIni}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{FechaIni}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{FechaFin})]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="143" height="42" uuid="5809c7d3-af46-4f8c-a303-b0a7678f3560">
