@@ -205,6 +205,9 @@ ORDER BY
 	<variable name="TotalPesoParcial" class="java.math.BigDecimal" resetType="Group" resetGroup="Producto" calculation="Sum">
 		<variableExpression><![CDATA[$F{PESO_TOTAL}]]></variableExpression>
 	</variable>
+	<variable name="sdf" class="java.text.SimpleDateFormat">
+		<variableExpression><![CDATA[new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE})]]></variableExpression>
+	</variable>
 	<group name="Clientes">
 		<groupExpression><![CDATA[$F{cte_nombre}]]></groupExpression>
 		<groupHeader>
@@ -456,7 +459,7 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{FechaIni}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{FechaFin})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{FechaIni}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{FechaFin})]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="143" height="42" uuid="5809c7d3-af46-4f8c-a303-b0a7678f3560">
