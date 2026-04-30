@@ -229,14 +229,14 @@ ORDER BY edc.nombre_cliente, edc.fecha, edc.movimiento]]>
 				<textElement textAlignment="Center">
 					<font fontName="SansSerif" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Estado de Cuenta]]></text>
+				<text><![CDATA[Estado de cuenta]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement x="0" y="21" width="580" height="18" uuid="25ee9349-2ff4-457c-abea-f4e3fb8cab58"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fechaInicio}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fechaFin})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{fechaInicio}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{fechaFin})]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="129" height="49" uuid="4d398662-e5c8-4616-bc6b-f055ff4c155a"/>
