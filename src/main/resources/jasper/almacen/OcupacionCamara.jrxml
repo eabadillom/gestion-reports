@@ -206,7 +206,7 @@
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fecha})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{fecha})]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
