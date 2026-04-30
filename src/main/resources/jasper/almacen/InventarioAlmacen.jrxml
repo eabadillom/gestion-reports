@@ -788,7 +788,7 @@ ORDER BY cliente,numero_cte, nb_tarima, producto]]>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{Fecha})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Al día " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{Fecha})]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

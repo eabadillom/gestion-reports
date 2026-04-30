@@ -493,7 +493,7 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fechaInicio}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy").format($P{fechaFin})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{fechaInicio}) + " al " + new java.text.SimpleDateFormat("dd/MMM/yyyy", $P{REPORT_LOCALE}).format($P{fechaFin})]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
