@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OcupacionCamara" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8a15733-41b2-4cd9-aa5b-23ad3c056967">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_local.jrdax"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GestionLocal"/>
 	<parameter name="imagen" class="java.lang.String">
 		<defaultValueExpression><![CDATA["/logo.jpeg"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="idCliente" class="java.util.List"/>
+	<parameter name="idCliente" class="java.lang.Object"/>
 	<parameter name="idPlanta" class="java.lang.Integer"/>
 	<parameter name="fecha" class="java.util.Date"/>
+	<parameter name="listClientes" class="java.util.Collection" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{idCliente} instanceof java.util.Collection ? (java.util.Collection)$P{idCliente} : ($P{idCliente} == null ? java.util.Collections.emptyList() : java.util.Arrays.asList($P{idCliente}))]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[WITH i AS (
 					    SELECT
@@ -40,7 +43,7 @@
 					    WHERE cdd.status = 1
 					      AND cdd.FECHA_INGRESO <= $P{fecha}
 					      AND ($P{idPlanta} IS NULL OR plt.PLANTA_CVE = $P{idPlanta})
-					      AND $X{IN, cdd.cte_cve, idCliente}
+					      AND $X{IN, cdd.cte_cve, listClientes}
 					      AND plt.st_habilitado = true
 					),
 					t1 AS (
