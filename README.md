@@ -10,4 +10,5 @@ Este componente proporciona un lugar común para los reportes del sistema de inv
 - Kardex
 - Orden retiro (salida)
 - Estado de cuenta (clientes)
+- Constancia de salida (ticket)
 
