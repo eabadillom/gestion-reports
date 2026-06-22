@@ -9,6 +9,7 @@ Este componente proporciona un lugar común para los reportes del sistema de inv
 - Reporte de ocupacion camara
 - Kardex
 - Orden retiro (salida)
+- Constancia de salida (ticket)
 
 # Cartera
 - Estado de cuenta (clientes)

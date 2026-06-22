@@ -41,6 +41,10 @@ Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Chang
 > * `almacen/OcupacionCamara.jrxml`
 > * `almacen/Salidas.jrxml`
 
+## [1.3.2] - 2026-06-12
+### Added
+- Constancia de salida (ticket).
+
 ## [1.3.1] - 2026-04-30
 ### Changed
 - En los archivos JRXML se utiliza la clase java.util.SimpleDateFormat para formatear etiquetas con rangos de fecha (por ejemplo, "Del <fecha_inicio> al <fecha_fin>"). Se configura el Locale del SimpleDateFormat para asegurar la traducción correcta de los nombres de días, meses y otros elementos de fecha en el idioma definido por el parámetro REPORT_LOCALE.
