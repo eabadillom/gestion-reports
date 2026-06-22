@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Concentrada" pageWidth="661" pageHeight="792" columnWidth="621" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d6dbc69-48cb-4a42-9493-dd286aca4e23">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="141"/>
@@ -245,11 +245,11 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center" markup="styled">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Nombre</style>]]></text>
@@ -260,10 +260,11 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center" markup="styled">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Subtotal</style>]]></text>
@@ -274,11 +275,11 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineStyle="Solid"/>
+					<pen lineStyle="Solid" lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center" markup="styled">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>I.V.A.</style>]]></text>
@@ -287,7 +288,7 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 				<reportElement mode="Opaque" x="0" y="0" width="60" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="f33d3d36-222e-4aa4-8fe4-5cd2eaba8b85">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" markup="styled">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Cliente</style>]]></text>
@@ -298,9 +299,10 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center" markup="styled">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Saldo</style>]]></text>
@@ -360,13 +362,6 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente]]>
 				</textElement>
 				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Total</style>]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="270" y="0" width="59" height="17" uuid="922893fd-cc88-4738-b7b0-89cdcd78e9f4"/>
-				<textElement textAlignment="Center" markup="styled">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{totalClientes}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="0" y="0" width="621" height="1" forecolor="#2199F6" uuid="770583e0-8fc6-423a-9c50-182cab316fdc"/>
 			</line>

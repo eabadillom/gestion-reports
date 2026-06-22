@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Desglosada" pageWidth="658" pageHeight="792" columnWidth="618" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0478edbe-8b1c-45ce-9646-1fe40f4a3e6f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="359"/>
@@ -339,79 +339,82 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente, fecha_pago, nom_serie, nume
 		</band>
 	</title>
 	<columnHeader>
-		<band height="12">
+		<band height="18">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="160" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="55e01551-3549-41ad-8520-9e2d98512d88"/>
+				<reportElement mode="Opaque" x="0" y="0" width="160" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="55e01551-3549-41ad-8520-9e2d98512d88"/>
 				<box>
-					<pen lineColor="#FFF5F5"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de facturación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="160" y="0" width="104" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="1e0980d7-86ca-4995-b8b3-f8439813230c"/>
+				<reportElement mode="Opaque" x="160" y="0" width="104" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="1e0980d7-86ca-4995-b8b3-f8439813230c"/>
 				<box>
-					<pen lineColor="#FFF5F5"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="264" y="0" width="97" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="d9343f03-e45b-4e02-a496-606d7190547d"/>
+				<reportElement mode="Opaque" x="264" y="0" width="97" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="d9343f03-e45b-4e02-a496-606d7190547d"/>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="361" y="0" width="85" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="7132acb2-00f6-4a11-b530-63faa035c082"/>
+				<reportElement mode="Opaque" x="361" y="0" width="85" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="7132acb2-00f6-4a11-b530-63faa035c082">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
-					<pen lineColor="#FFF5F5"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Subtotal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="446" y="0" width="85" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="6d2c4e03-2a56-452a-9e59-41d8bff19a21">
+				<reportElement mode="Opaque" x="446" y="0" width="85" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="6d2c4e03-2a56-452a-9e59-41d8bff19a21">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#FFF5F5"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[I.V.A.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="531" y="0" width="87" height="12" forecolor="#FFFFFF" backcolor="#2199F6" uuid="c62c9dcf-12b2-4068-b089-537b936df5ef">
+				<reportElement mode="Opaque" x="531" y="0" width="87" height="18" forecolor="#FFFFFF" backcolor="#2199F6" uuid="c62c9dcf-12b2-4068-b089-537b936df5ef">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#FCFCFC"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center">
-					<font size="8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Saldo]]></text>
 			</staticText>
@@ -488,49 +491,49 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente, fecha_pago, nom_serie, nume
 	<summary>
 		<band height="20">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="196" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="7d57c51b-2b6d-4519-9f77-361ee72f04f2"/>
+				<reportElement mode="Opaque" x="0" y="0" width="160" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="7d57c51b-2b6d-4519-9f77-361ee72f04f2"/>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[<style pdfFontName= 'Helvetica-Bold'>Total</style>]]></text>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Opaque" x="196" y="0" width="54" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="8ba251bf-e711-4707-85ba-0fe77beb6c88"/>
+				<reportElement mode="Opaque" x="160" y="0" width="104" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="8ba251bf-e711-4707-85ba-0fe77beb6c88"/>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{totalGeneral}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{totalGeneral} + " factura(s)"]]></textFieldExpression>
 			</textField>
 			<textField pattern="$#,##0.00;$-#,##0.00">
 				<reportElement mode="Opaque" x="360" y="0" width="86" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="dc64e684-ccc7-4441-aeaf-506b42e3c833"/>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{subTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="$#,##0.00;$-#,##0.00">
 				<reportElement mode="Opaque" x="446" y="0" width="84" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="4e59bac9-f8b2-42f5-88e6-b1a2525858e7"/>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalI.V.A.}]]></textFieldExpression>
 			</textField>
@@ -540,22 +543,25 @@ ORDER BY emi_nombre, nombre_cliente, numero_cliente, fecha_pago, nom_serie, nume
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
-					<pen lineColor="#FFFFFF"/>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalSaldo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="250" y="0" width="110" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="1efd62b2-bd86-424b-af69-4bd6d8c52739"/>
+				<reportElement mode="Opaque" x="264" y="0" width="96" height="20" forecolor="#FFFFFF" backcolor="#2199F6" uuid="1efd62b2-bd86-424b-af69-4bd6d8c52739"/>
 				<box>
+					<pen lineColor="#2199F6"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
 		</band>

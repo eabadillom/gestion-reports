@@ -2,8 +2,8 @@ package com.ferbo.gestion.reports.util;
 
 public enum TipoCarteraCliente 
 {
-    DESGLOSADO("/jasper/facturacion/Desglosada.jrxml"),
-    CONCENTRADO("/jasper/facturacion/Concentrada.jrxml");
+    DESGLOSADO("/jasper/facturacion/CarteraClientesDesglosada.jrxml"),
+    CONCENTRADO("/jasper/facturacion/CarteraClientesConcentrada.jrxml");
 
     private final String reportPath;
 
