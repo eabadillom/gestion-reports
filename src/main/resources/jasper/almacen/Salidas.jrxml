@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="salidas_jr6" pageWidth="612" pageHeight="792" whenNoDataType="NoDataSection" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c251b41-076b-4d89-9fdd-af2b49f617cb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_Azure.jrdax"/>
-	<parameter name="idCliente" class="java.lang.Integer"/>
+	<parameter name="idCliente" class="java.lang.Object"/>
 	<parameter name="fechaInicio" class="java.util.Date"/>
 	<parameter name="fechaFin" class="java.util.Date"/>
 	<parameter name="imagen" class="java.lang.String"/>
 	<parameter name="planta" class="java.lang.Integer"/>
 	<parameter name="camara" class="java.lang.Integer"/>
+	<parameter name="listClientes" class="java.util.Collection" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{idCliente} instanceof java.util.Collection ? (java.util.Collection)$P{idCliente} : ($P{idCliente} == null ? java.util.Collections.emptyList() : java.util.Arrays.asList($P{idCliente}))]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT
 	cs.fecha,
@@ -37,7 +40,7 @@ INNER JOIN camara cam ON cam.camara_cve = dcs.camara_cve
 INNER JOIN planta plt ON plt.planta_cve = cam.planta_cve
 WHERE cs.status NOT IN (2)
 	AND cs.FECHA BETWEEN $P{fechaInicio} AND $P{fechaFin}
-	AND (cdd.cte_cve = $P{idCliente} OR $P{idCliente} IS NULL) 
+	AND $X{IN, cdd.cte_cve, listClientes} 
 	AND (plt.planta_cve = $P{planta} OR $P{planta} IS NULL)
 	AND (cam.camara_cve = $P{camara} OR $P{camara} IS NULL)
 ORDER BY
