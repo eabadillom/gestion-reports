@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InventarioAlmacen" pageWidth="851" pageHeight="611" columnWidth="761" leftMargin="45" rightMargin="45" topMargin="28" bottomMargin="28" uuid="2f361463-f417-4104-8c12-7ab1c04e4a00">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_Azure.jrdax"/>
@@ -15,12 +15,15 @@
 	<parameter name="imagen" class="java.lang.String">
 		<defaultValueExpression><![CDATA[new String ("resources/logo_square.gif")]]></defaultValueExpression>
 	</parameter>
-	<parameter name="idCliente" class="java.lang.Integer">
+	<parameter name="idCliente" class="java.lang.Object">
 		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Camara" class="java.lang.Integer"/>
 	<parameter name="Planta" class="java.lang.Integer"/>
 	<parameter name="Fecha" class="java.util.Date"/>
+	<parameter name="listClientes" class="java.util.Collection" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{idCliente} instanceof java.util.Collection ? (java.util.Collection)$P{idCliente} : ($P{idCliente} == null ? java.util.Collections.emptyList() : java.util.Arrays.asList($P{idCliente}))]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[select * from (
 	select
@@ -82,7 +85,7 @@
 			select *
 			from constancia_de_deposito cdd
 			WHERE cdd.status = 1
-				and (cdd.cte_cve = $P{idCliente} OR $P{idCliente} IS NULL)
+				AND $X{IN, cdd.cte_cve, listClientes}
 				AND cdd.fecha_ingreso <= $P{Fecha}
 		) cddEnt on parEnt.folio = cddEnt.folio
 		left outer join tarima t on t.cd_tarima = parEnt.cd_tarima
@@ -212,7 +215,7 @@
 			select *
 			from constancia_de_deposito cdd
 			WHERE cdd.status = 1
-				and (cdd.cte_cve = $P{idCliente} OR $P{idCliente} IS NULL)
+				AND $X{IN, cdd.cte_cve, listClientes}
 				AND cdd.fecha_ingreso <= $P{Fecha}
 		) cddEnt on parEnt.folio = cddEnt.folio
 		left outer join tarima t on t.cd_tarima = parEnt.cd_tarima
@@ -340,7 +343,7 @@
 			select *
 			from constancia_de_deposito cdd
 			WHERE cdd.status = 1
-				and (cdd.cte_cve = $P{idCliente} OR $P{idCliente} IS NULL)
+				AND $X{IN, cdd.cte_cve, listClientes}
 				AND cdd.fecha_ingreso <= $P{Fecha}
 		) cddEnt on parEnt.folio = cddEnt.folio
 		inner join tarima t on t.cd_tarima = parEnt.cd_tarima

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteInventarioEntradas" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b1d23060-936c-4bd9-a427-94b0e5decc5d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_Azure.jrdax"/>
@@ -7,9 +7,7 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="820"/>
 	<parameter name="FechaIni" class="java.util.Date"/>
 	<parameter name="FechaFin" class="java.util.Date"/>
-	<parameter name="idCliente" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[$P{idCliente}]]></defaultValueExpression>
-	</parameter>
+	<parameter name="idCliente" class="java.lang.Object"/>
 	<parameter name="Camara" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[$P{Camara}]]></defaultValueExpression>
 	</parameter>
@@ -18,6 +16,9 @@
 	</parameter>
 	<parameter name="imagen" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="listClientes" class="java.util.Collection" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{idCliente} instanceof java.util.Collection ? (java.util.Collection)$P{idCliente} : ($P{idCliente} == null ? java.util.Collections.emptyList() : java.util.Arrays.asList($P{idCliente}))]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT
@@ -51,7 +52,7 @@ INNER JOIN producto prd ON prd.producto_cve = udp.producto_cve
 INNER JOIN camara cam ON cam.camara_cve = p.camara_cve
 INNER JOIN planta plt ON cam.planta_cve = plt.planta_cve
 WHERE cdd.FECHA_INGRESO BETWEEN $P{FechaIni} AND $P{FechaFin}
-	AND (cdd.cte_cve = $P{idCliente} OR $P{idCliente} IS NULL)
+	AND $X{IN, cdd.cte_cve, listClientes}
 	AND (cam.camara_cve = $P{Camara} OR $P{Camara} IS NULL)
 	AND (plt.planta_cve = $P{Planta} OR $P{Planta} IS NULL)
 ORDER BY

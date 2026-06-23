@@ -5,6 +5,42 @@ Todos los cambios importantes en este proyecto serán documentados en este archi
 Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
+## [1.4.0] - 2026-06-19
+
+### Added
+
+> Se agregaron dos nuevas clases en el paquete de `com.ferbo.gestion.reports.jasper` para la obtención de los reportes de Antiguedad de saldos y Cartera de clientes
+
+> * `AntiguedadSaldosJr`
+> * `CarteraClienteJR`
+
+> Se agregarón dos clases de tipo enumeración en el paquete `com.ferbo.util` para la extracción de la ruta de los archivos JRXML de Antiguedad de Saldos y Cartera de Clientes
+
+> * TipoAntiguedadSaldos
+> * TipoCarteraCliente
+
+> Se agregrarón 4 nuevos archivos JRXML para la obtención de los reportes de Antiguedad de Saldos y Cartera de Clientes
+
+> * `facturacion/AntiguedadSaldosCondensado.jrxml`
+> * `facturacion/AntiguedadSaldosDesglosado.jrxml`
+> * `facturacion/Concentrada.jrxml`
+> * `facturacion/Desglosada.jrxml`
+
+### Changed
+> En algunas clases del paquete de 'Jasper' se agregarón nuevos métodos sobrecargados para la consulta de reportes con la opción de múltiples clientes. La modificación realizada en la firma de los métodos consiste en reemplazar el tipo de dato 'Integer' por 'List<Integer>' para el parámetro de clientes.
+
+> * `ReporteEntradasJR`
+> * `ReporteInventarioJR`
+> * `ReporteOcupacionCamaraJR`
+> * `ReporteSalidasJR`
+
+> Los archivos JRXML, el parametro idCliente fue definido como java.lang.Object para permitir el manejo tanto de un solo cliente (Integer) o de múltiples clientes (List<Integer>), con el fin de aceptar diferentes tipos de entrada. Posteriormente, se agregó una validación y conversión del parámetro para que siempre sea tratado internamente como una colección de elementos, permitiendo así su utilización dentro de la consulta del reporte.
+
+> * `almacen/Entradas.jrxml`
+> * `almacen/InventarioAlmacen.jrxml`
+> * `almacen/OcupacionCamara.jrxml`
+> * `almacen/Salidas.jrxml`
+
 ## [1.3.2] - 2026-06-12
 ### Added
 - Constancia de salida (ticket).
