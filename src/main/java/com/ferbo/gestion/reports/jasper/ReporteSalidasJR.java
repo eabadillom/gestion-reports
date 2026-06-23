@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ferbo.gestion.tools.GestionException;
+import java.util.List;
 
 public class ReporteSalidasJR extends AbstractJR {
 	
@@ -47,6 +48,32 @@ public class ReporteSalidasJR extends AbstractJR {
 		
 		return bytes;
 	}
+        
+    public byte[] getPDF(Date fechaInicio, Date fechaFin, List<Integer> listClientes, Integer idPlanta, Integer idCamara)
+    throws GestionException {
+        byte[] bytes = null;
+
+        InputStream jrxml = null;
+        JasperBL jasperBO = new JasperBL();
+
+        try {
+            log.info("Ruta logo: " + this.logoPath);
+            jrxml = fsTools.getResourceStream(reportNameJASPER);
+            this.jrParams.put("idCliente", listClientes);
+            this.jrParams.put("fechaInicio", fechaInicio);
+            this.jrParams.put("fechaFin", fechaFin);
+            this.jrParams.put("planta", idPlanta);
+            this.jrParams.put("camara", idCamara);
+            this.jrParams.put("imagen", this.logoPath);
+
+            bytes = jasperBO.createPDF(this.jrParams, jrxml);
+
+        } catch (Exception ex) {
+            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
+        }
+
+        return bytes;
+    }
 	
 	public byte[] getXLSX(Date fechaInicio, Date fechaFin, Integer idCliente,  Integer idPlanta, Integer idCamara)
 	throws GestionException {
@@ -73,5 +100,31 @@ public class ReporteSalidasJR extends AbstractJR {
 		
 		return bytes;
 	}
+        
+    public byte[] getXLSX(Date fechaInicio, Date fechaFin, List<Integer> listClientes, Integer idPlanta, Integer idCamara)
+            throws GestionException {
+        byte[] bytes = null;
+
+        InputStream jrxml = null;
+        JasperBL jasperBO = new JasperBL();
+
+        try {
+            log.info("Ruta logo: " + this.logoPath);
+            jrxml = fsTools.getResourceStream(reportNameJASPER);
+            this.jrParams.put("idCliente", listClientes);
+            this.jrParams.put("fechaInicio", fechaInicio);
+            this.jrParams.put("fechaFin", fechaFin);
+            this.jrParams.put("planta", idPlanta);
+            this.jrParams.put("camara", idCamara);
+            this.jrParams.put("imagen", this.logoPath);
+
+            bytes = jasperBO.createXLSX(this.jrParams, jrxml);
+
+        } catch (Exception ex) {
+            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
+        }
+
+        return bytes;
+    }
 
 }

@@ -25,6 +25,32 @@ public class ReporteOcupacionCamaraJR extends AbstractJR
         super(conn, logoAbsolutePath);
     }
     
+    public byte[] getPDFReporteOcupacionCamara(Date fecha, Integer idCliente, Integer idPlanta) throws GestionException 
+    {
+        byte[]              bytes = null;
+        InputStream         jrxml = null;
+        Map<String, Object> jrParams = null;
+        JasperBL jasperBO = new JasperBL();
+        try {
+            log.info("Ruta logo: " + this.logoPath);
+            jrxml = fsTools.getResourceStream(reportNameJASPER);
+            
+            jrParams = new HashMap<String, Object>();
+            jrParams.put("REPORT_CONNECTION", conn);
+            jrParams.put("idCliente", idCliente);
+            jrParams.put("idPlanta", idPlanta);
+            jrParams.put("fecha", fecha);
+            jrParams.put("imagen", this.logoPath);
+            jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
+            
+            bytes = jasperBO.createPDF(jrParams, jrxml);
+        } catch(Exception ex) {
+            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
+        }
+        
+        return bytes;
+    }
+    
     public byte[] getPDFReporteOcupacionCamara(Date fecha, List<Integer> clientes, Integer idPlanta) throws GestionException 
     {
         byte[]              bytes = null;
@@ -51,10 +77,37 @@ public class ReporteOcupacionCamaraJR extends AbstractJR
         return bytes;
     }
     
-    public byte[] getXLSReporteOcupacionCamara(List<Integer> listCliente, Integer idCliente, Integer idPlanta) throws GestionException 
+    public byte[] getXLSReporteOcupacionCamara(Date fecha, Integer idCliente, Integer idPlanta) throws GestionException 
     {
         byte[]              bytes = null;
-        Date                fecha = new Date();
+        InputStream         jrxml = null;
+        Map<String, Object> jrParams = null;
+        
+        JasperBL jasperBO = new JasperBL();
+        
+        try {
+            log.info("Ruta logo: " + this.logoPath);
+            jrxml = fsTools.getResourceStream(reportNameJASPER);
+            
+            jrParams = new HashMap<String, Object>();
+            jrParams.put("REPORT_CONNECTION", conn);
+            jrParams.put("idCliente", idCliente);
+            jrParams.put("idPlanta", idPlanta);
+            jrParams.put("fecha", fecha);
+            jrParams.put("imagen", this.logoPath);
+            jrParams.put("REPORT_LOCALE", new Locale("es", "MX"));
+            
+            bytes = jasperBO.createXLSX(jrParams, jrxml);
+        } catch(Exception ex) {
+            throw new GestionException("Problema en el procesamiento del reporte de inventario (PDF)...", ex);
+        }
+        
+        return bytes;
+    }
+    
+    public byte[] getXLSReporteOcupacionCamara(Date fecha, List<Integer> listCliente, Integer idPlanta) throws GestionException 
+    {
+        byte[]              bytes = null;
         InputStream         jrxml = null;
         Map<String, Object> jrParams = null;
         
