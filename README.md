@@ -15,3 +15,6 @@ Este componente proporciona un lugar común para los reportes del sistema de inv
 - Estado de cuenta (clientes)
 - Antiguedad de saldos
 - Cartera de clientes
+
+# Bitácora
+- Bitácora (General)

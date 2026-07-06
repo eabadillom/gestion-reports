@@ -5,6 +5,14 @@ Todos los cambios importantes en este proyecto serán documentados en este archi
 Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
+## [1.5.0] - 2026-06-26
+
+### Added
+
+> Se agregó la clase `BitacoraJR` en el paquete `com.ferbo.gestion.reports.jasper` para la generación del reporte de Bitácora operativa.
+
+> Se agregó el archivo JRXML `bitacora/Bitacora.jrxml` para la generación del reporte de Bitácora.
+
 ## [1.4.0] - 2026-06-19
 
 ### Added
