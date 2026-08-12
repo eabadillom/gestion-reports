@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bitacoraglobal" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="667c7d2c-88f8-4733-a150-29717cd06270">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.19.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bitacora" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44fbee8d-e478-44f7-ad7b-3bf959d6fcb2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="bitacora"/>
 	<property name="com.jaspersoft.studio.report.description" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL_Gestion_local.jrdax"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value=""/>
 	<parameter name="imagen" class="java.lang.String"/>
 	<parameter name="P_FECHAINICIO" class="java.util.Date"/>
 	<parameter name="P_FECHAFIN" class="java.util.Date"/>
-	<parameter name="P_USUARIO" class="java.lang.Integer"/>
+	<parameter name="P_CD_USUARIO" class="java.lang.Integer"/>
+	<parameter name="P_NB_USUARIO" class="java.lang.String"/>
 	<parameter name="P_NB_PANTA" class="java.lang.String"/>
 	<parameter name="P_TP_PANTA" class="java.lang.String"/>
 	<queryString>
@@ -15,129 +16,163 @@
 	b.tp_panta,
     b.nb_panta,
     b.cd_docum,
-    CONCAT(
-    u.nombre, ' ',
-  	u.apellido_1, ' ',
-    u.apellido_2) AS nombre_completo,
+    b.nb_usuario, 
    	b.fh_momento,
     b.hr_momento,
     b.nb_bitac
 		FROM bitacora b
-		INNER JOIN usuario u ON b.cd_usuario = u.id
 		WHERE ($P{P_FECHAINICIO} IS NULL OR b.fh_momento >= $P{P_FECHAINICIO})
 		AND ($P{P_FECHAFIN} IS NULL OR b.fh_momento <= $P{P_FECHAFIN})
-  		AND ($P{P_USUARIO} IS NULL OR b.cd_usuario = $P{P_USUARIO})
+  		AND ($P{P_CD_USUARIO} IS NULL OR b.cd_usuario = $P{P_CD_USUARIO})
+  		AND ($P{P_NB_USUARIO} IS NULL OR b.nb_usuario = $P{P_NB_USUARIO})
   		AND ($P{P_NB_PANTA} IS NULL OR b.nb_panta = $P{P_NB_PANTA})
   		AND ($P{P_TP_PANTA} IS NULL OR b.tp_panta = $P{P_TP_PANTA})
-  		ORDER BY u.nombre, u.apellido_1, u.apellido_2,
+  		ORDER BY b.nb_usuario,
    		b.cd_docum,
    		b.fh_momento,
   		b.hr_momento;]]>
 	</queryString>
-	<field name="tp_panta" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="tp_panta"/>
-		<property name="com.jaspersoft.studio.field.label" value="tp_panta"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
-	<field name="nb_panta" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nb_panta"/>
-		<property name="com.jaspersoft.studio.field.label" value="nb_panta"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
-	<field name="cd_docum" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="cd_docum"/>
-		<property name="com.jaspersoft.studio.field.label" value="cd_docum"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
-	<field name="nombre_completo" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nombre_completo"/>
-		<property name="com.jaspersoft.studio.field.label" value="nombre_completo"/>
-	</field>
-	<field name="fh_momento" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.name" value="fh_momento"/>
-		<property name="com.jaspersoft.studio.field.label" value="fh_momento"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
-	<field name="hr_momento" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.name" value="hr_momento"/>
-		<property name="com.jaspersoft.studio.field.label" value="hr_momento"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
-	<field name="nb_bitac" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="nb_bitac"/>
-		<property name="com.jaspersoft.studio.field.label" value="nb_bitac"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="bitacora"/>
-	</field>
+	<field name="tp_panta" class="java.lang.String"/>
+	<field name="nb_panta" class="java.lang.String"/>
+	<field name="cd_docum" class="java.lang.String"/>
+	<field name="nb_usuario" class="java.lang.String"/>
+	<field name="fh_momento" class="java.lang.String"/>
+	<field name="hr_momento" class="java.lang.String"/>
+	<field name="nb_bitac" class="java.lang.String"/>
 	<group name="usuarioGRP">
-		<groupExpression><![CDATA[$F{nombre_completo}]]></groupExpression>
+		<groupExpression><![CDATA[$F{nb_usuario}]]></groupExpression>
 		<groupHeader>
 			<band height="15">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<textField>
-					<reportElement mode="Opaque" x="0" y="0" width="572" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="3561f748-efa7-48a8-9e4a-130c90cc823b">
+					<reportElement x="0" y="0" width="570" height="15" forecolor="#2196F3" uuid="bd802764-c68f-4c52-8dfd-2d05bd78363a">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<box>
-						<pen lineColor="#2196F3"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="10" isBold="true"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{nombre_completo}.toUpperCase()]]></textFieldExpression>
-					<patternExpression><![CDATA[$F{nombre_completo}.toUpperCase()]]></patternExpression>
+					<textFieldExpression><![CDATA[$F{nb_usuario}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="30">
+			<band height="5">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			</band>
-		</groupFooter>
-	</group>
-	<group name="documentoGRP">
-		<groupExpression><![CDATA[$F{cd_docum}]]></groupExpression>
-		<groupHeader>
-			<band height="20">
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				<textField pattern="dd/MM/yyyy">
-					<reportElement mode="Transparent" x="0" y="0" width="60" height="20" forecolor="#2196F3" backcolor="#FFFFFF" uuid="e2fee681-89ca-478e-9bdb-ca18b9bb81e1">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box>
-						<pen lineColor="#2196F3"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Bottom">
-						<font size="8" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fh_momento}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement mode="Transparent" x="60" y="0" width="512" height="20" forecolor="#2196F3" backcolor="#FFFFFF" uuid="f648549d-5afb-4834-9f01-6ac50a0188c2">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<box leftPadding="2">
-						<pen lineColor="#2196F3"/>
-					</box>
-					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font size="8" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{tp_panta} + " DE " + $F{nb_panta} + " - " + $F{cd_docum}]]></textFieldExpression>
-				</textField>
 				<line>
-					<reportElement x="0" y="19" width="572" height="1" forecolor="#2196F3" backcolor="#2196F3" uuid="759e47cc-b499-496f-afd7-28a97e468927">
+					<reportElement x="0" y="0" width="570" height="1" forecolor="#2196F3" backcolor="#2196F3" uuid="d51554d5-cdd9-4abe-99a0-74164f0e436f">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="documentoGRP">
+		<groupExpression><![CDATA[$F{cd_docum}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<textField>
+					<reportElement mode="Opaque" x="448" y="0" width="100" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="61ef1440-27c6-446b-81a1-d223c1ae1964">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cd_docum}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement mode="Opaque" x="0" y="0" width="90" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="88c85da2-69af-4df8-a0cd-3ba7a7d6a480">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fh_momento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="104" y="0" width="100" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="90e85282-37c1-412b-9dd9-e6a18cfc0b83">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tp_panta}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="236" y="0" width="180" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="4f68eaa9-dea3-4668-bca3-7ab17b227514">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nb_panta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="210" y="0" width="20" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="ba0e3994-4169-4616-99b0-b1cef9d38cf9">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="90" y="0" width="14" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="f4766dde-1692-42a1-85ec-25f940802c10">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="204" y="0" width="6" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="8e2074fb-e576-49e2-8db4-e2b92d4aa6ad">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="230" y="0" width="6" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="4185ae1b-762c-4276-9b41-777444a3cce9">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="416" y="0" width="32" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="020eef82-46e9-4c94-877d-50ed6d1653db">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="548" y="0" width="22" height="15" forecolor="#FFFFFF" backcolor="#2196F3" uuid="800859db-2d09-4ecf-b268-eef85b073cb4">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -153,7 +188,7 @@
 		<band height="54" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="0" width="572" height="21" forecolor="#2196F3" uuid="bc8587a3-f885-4d9e-b489-3814aeb3d576">
+				<reportElement x="0" y="0" width="570" height="21" forecolor="#2196F3" uuid="70a0af21-5337-48a2-bd6f-90cb320dbb0a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -163,23 +198,21 @@
 				<text><![CDATA[BITÁCORA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="21" width="572" height="14" forecolor="#000000" uuid="e76655a9-c059-439a-bd6d-e78a4a02254c">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<reportElement x="0" y="21" width="570" height="14" uuid="9c566fcc-72fa-486f-a038-b2b7e0b1ff13">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Del " + new java.text.SimpleDateFormat("dd/MM/yyyy")
     .format($P{P_FECHAINICIO}) + " al " + new java.text.SimpleDateFormat("dd/MM/yyyy")
     .format($P{P_FECHAFIN})]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="0" y="0" width="170" height="54" uuid="83b3d86f-1adc-47bd-aee6-1a0d98e619f5">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<reportElement x="0" y="0" width="170" height="54" uuid="1f5b823e-29df-4a29-be0f-7f1b433dc0b0">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -198,31 +231,32 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="14" splitType="Stretch">
-			<textField textAdjust="StretchHeight" pattern="HH:mm:ss">
-				<reportElement stretchType="ContainerBottom" x="0" y="0" width="60" height="14" uuid="d2715395-6ed4-4516-90bc-4dbf894581c0">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<box padding="2"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="DejaVu Sans" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{hr_momento}]]></textFieldExpression>
-			</textField>
+		<band height="25" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField textAdjust="StretchHeight">
-				<reportElement stretchType="ContainerBottom" x="60" y="0" width="512" height="14" isPrintWhenDetailOverflows="true" uuid="12260344-9d0d-4f01-aa8f-cb709b64ae6c">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				<reportElement x="90" y="0" width="480" height="25" uuid="abeef863-bea5-48d8-8c24-99ec6f77dbc6">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<box padding="2"/>
+				<box padding="5"/>
 				<textElement verticalAlignment="Top">
-					<font fontName="DejaVu Sans" size="8"/>
-					<paragraph lineSpacing="1_1_2" lineSpacingSize="1.0" spacingAfter="10"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nb_bitac}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="HH:mm:ss">
+				<reportElement x="0" y="0" width="90" height="25" uuid="d059e74a-8024-4e58-8b9f-696023469086">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hr_momento}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -241,16 +275,4 @@
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</band>
 	</summary>
-	<noData>
-		<band height="100">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<staticText>
-				<reportElement x="0" y="0" width="572" height="100" uuid="05835970-0dcf-4192-89e1-ccef485d36b5">
-					<property name="com.jaspersoft.studio.unit.x" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[NO SE ENCONTRÓ INFORMACIÓN]]></text>
-			</staticText>
-		</band>
-	</noData>
 </jasperReport>
