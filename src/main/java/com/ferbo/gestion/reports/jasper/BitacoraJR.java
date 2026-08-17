@@ -35,7 +35,7 @@ public class BitacoraJR extends AbstractJR{
             
             this.jrParams.put("P_FECHAINICIO", fechaInicio);
             this.jrParams.put("P_FECHAFIN", fechaFin);
-            this.jrParams.put("P_USUARIO", idUsuario);
+            this.jrParams.put("P_CD_USUARIO", idUsuario);
             this.jrParams.put("P_NB_PANTA", tipoPantalla);
             this.jrParams.put("P_TP_PANTA", nombrePantalla);
             this.jrParams.put("imagen", this.logoPath);
@@ -61,12 +61,12 @@ public class BitacoraJR extends AbstractJR{
 
             this.jrParams.put("P_FECHAINICIO", fechaInicio);
             this.jrParams.put("P_FECHAFIN", fechaFin);
-            this.jrParams.put("P_USUARIO", idUsuario);
+            this.jrParams.put("P_CD_USUARIO", idUsuario);
             this.jrParams.put("P_NB_PANTA", tipoPantalla);
             this.jrParams.put("P_TP_PANTA", nombrePantalla);
             this.jrParams.put("imagen", this.logoPath);
 
-            bytes = jasperBO.createXLSX(this.jrParams, jrxml);
+            bytes = jasperBO.createXLSX(jrParams, jrxml);
         } catch (Exception ex) {
             throw new GestionException("Problema en el procesamiento del reporte de bitácora (XLSX)...", ex);
         }
