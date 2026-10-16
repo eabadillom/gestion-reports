@@ -11,6 +11,9 @@ Este componente proporciona un lugar común para los reportes del sistema de inv
 - Orden retiro (salida)
 - Constancia de salida (ticket)
 
+# Ingresos
+- Reporte de ingresos
+
 # Cartera
 - Estado de cuenta (clientes)
 - Antiguedad de saldos

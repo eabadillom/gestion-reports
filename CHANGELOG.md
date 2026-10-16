@@ -5,6 +5,12 @@ Todos los cambios importantes en este proyecto serán documentados en este archi
 Este proyecto sigue versionado semántico (SemVer) y el formato de [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
+## [1.6.0] - 2026-10-16
+### Added
+> Se agregó el reporte de ingresos, con los siguientes componentes:
+> * Clase `com.ferbo.gestion.reports.jasper.ingresos.IngresosJR.java` para la generación del reporte.
+> * Archivo `/resources/jasper/ingresos/Ingresos.jrxml` (plantilla de JasperReports).
+
 ## [1.5.0] - 2026-06-26
 
 ### Added
